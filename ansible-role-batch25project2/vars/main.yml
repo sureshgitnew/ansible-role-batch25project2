@@ -1,0 +1,5 @@
+---
+# vars file for project2
+nginx_ports:
+  - 81
+  - 82
