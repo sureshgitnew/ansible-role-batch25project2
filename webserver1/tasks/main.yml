@@ -1,0 +1,27 @@
+---
+# tasks file for webserver1
+- name: Install NGINX
+  package:
+    name: nginx
+    state: present
+
+- name: Deploy the website
+  copy:
+    src: index.html
+    dest: /usr/share/nginx/html/index.html
+    owner: nginx
+    group: nginx
+    mode: '0644'
+
+- name: Ensure NGINX is started and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: true
+
+- name: Deploy the website (index.html)
+  copy:
+    src: index.html
+    dest: /usr/share/nginx/html/index.html
+  notify:
+    - restart nginx
